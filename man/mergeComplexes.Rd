@@ -1,6 +1,5 @@
 \name{mergeComplexes}
 \alias{mergeComplexes}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Iteratively combine columns in initial PCMG estimate}
 \description{
 Repeatedly applies the function \code{LCdelta} to make combinations of columns in the affiliation matrix representing the protein complex membership graph (PCMG) for AP-MS data.
@@ -8,7 +7,6 @@ Repeatedly applies the function \code{LCdelta} to make combinations of columns i
 \usage{
 mergeComplexes(PCMG, adjMat, simMat = NULL, sensitivity = 0.75, specificity = 0.995, beta = 0)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{PCMG}{Current PCMG estimate}
   \item{adjMat}{Adjacency matrix of bait-hit data from an AP-MS experiment.  Rows correspond to baits and columns to hits.}
@@ -30,11 +28,6 @@ An affiliation matrix representing the estimated PCMG.  The number of rows and r
 
 \references{Scholtens, D. and Gentleman, R.  Making sense of high throughput protein-protein interaction data. (2004).}
 \author{Denise Scholtens}
-%\note{ ~~further notes~~ }
-
-
- $~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{\code{\link{LCdelta}},\code{\link{findComplexes}}}
 \examples{
 
