@@ -1,6 +1,7 @@
 
-#function decompose a bait-hit adjacency matrix (made symmetric for baits)
-#into complex memberships
+#function to find bhmaxSubgraphs from a bait-hit adjacency matrix
+
+#by default, unreciprocated bait-bait edges will be treated as observed
 
 #adjMat has dimensions N by (N+M) corresponding to N baits and M hits
 #adjMat is named with row and column names corresponding to proteins
@@ -9,14 +10,26 @@
 #any columns that are subsets of other columns are eliminated
 
 
-bhmaxSubgraph <- function(adjMat){
+bhmaxSubgraph <- function(adjMat,unrecip=1){
+
+	!is.null(colnames(adjMat)) || stop("Columns of adjMat must be named")
+	!is.null(rownames(adjMat))|| stop("Rows of adjMat must be named")
+
+	Nb <- dim(adjMat)[1]
+	Nh <- dim(adjMat)[2] - Nb
+	
+	identical(rownames(adjMat),colnames(adjMat)[1:Nb]) || stop("rownames
+	and first Nb colnames of adjMat must be identical")
+	
+	#make adjMat[,1:Nb] symmetric
+	if(unrecip==0){
+	 adjMat[,1:Nb] <- pmin(adjMat[,1:Nb],t(adjMat[,1:Nb]))
+	} else adjMat[,1:Nb] <- pmax(adjMat[,1:Nb],t(adjMat[,1:Nb]))
 
 	#record the order of the columns of adjMat so the order of the
 	#rows of the affiliation matrix will match the original column order
 	rowOrder <- colnames(adjMat)
-
-	N <- dim(adjMat)[1]
-	M <- dim(adjMat)[2] - N
+	hNames <- rowOrder[!rowOrder %in% rownames(adjMat)]
 
 	#make diagonal entries equal to 1
 	diag(adjMat) <- 1
@@ -24,69 +37,88 @@ bhmaxSubgraph <- function(adjMat){
 	#first find baits that only have hit pairs  
 	#will put these in at the end
 
-	hitComps <- which(rowSums(adjMat[,1:N])==1)
-	baitComps <- c(1:N)
-	if(length(hitComps)>0) 	baitComps <- c(1:N)[-hitComps]
+	hitComps <- which(rowSums(adjMat[,1:Nb])==1)
+	baitComps <- rownames(adjMat)
+	if(length(hitComps)>0) 	baitComps <- baitComps[-hitComps]
 	
+	#now reorder by complex size - smaller first
+	baitComps <- baitComps[order(rowSums(adjMat[baitComps,]))]
+
 
 	Nbait <- length(baitComps)
 
 	#reorder so that hit only complexes are last
-	adjMat <- adjMat[c(baitComps,hitComps),
-				c(baitComps,hitComps,(N+1):(N+M))]
+	adjMat <- adjMat[c(baitComps,names(hitComps)),
+				c(baitComps,names(hitComps),hNames)]
 
-	compMat <- NULL
 
-	for (n in 1:Nbait){
+	
+	M <- as.matrix(adjMat[1,])
 
-	newComp <- as.matrix(c(rep(0,n-1),adjMat[n,n:(N+M)]))
+	for (i in 2:Nbait){
 
-	changeThese <- which(compMat[n,]==1)
-	n2c <- length(changeThese)
+	g <- as.matrix(c(rep(0,i-1),adjMat[i,i:(Nb+Nh)]))
+	G <- NULL
+
+	V <- which(M[i,]==1)
+	n2c <- length(V)
 
 	if(n2c>0){
 
-	newVecs <- NULL
 	lose <- rep(FALSE,n2c)
 
-	for (i in 1:n2c){
+	for (k in 1:n2c){
 		
-		maybeChange <- compMat[,changeThese[i]]
+		v <- M[,V[k]]
 
-		if(sum(maybeChange[(n+1):(N+M)]>newComp[(n+1):(N+M)])>0){
+		if(sum(v[(i+1):(Nb+Nh)]>g[(i+1):(Nb+Nh)])>0){
 
-		lose[i] <- TRUE		
+		lose[k] <- TRUE		
 
-		newComp1 <- maybeChange
-		newComp1[n] <- 0
+		v1 <- v
+		v1[i] <- 0
+		G <- cbind(G,v1)
 
-		newComp2 <- c(maybeChange[1:n],
-		pmin(maybeChange[(n+1):(N+M)],newComp[(n+1):(N+M)]))
-
-		newVecs <- cbind(newVecs,cbind(newComp1,newComp2))
-		
-		
+		v2 <- c(v[1:i],pmin(v[(i+1):(Nb+Nh)],g[(i+1):(Nb+Nh)]))
+		G <- cbind(G,v2)
 		}
 
 	}
-	newComp <- as.matrix(cbind(newVecs,newComp))
-	if(sum(lose)>0) compMat <- as.matrix(compMat[,-changeThese[lose]])
+
+	if(sum(lose)>0) M <- as.matrix(M[,-V[lose]])
 
 	}
 
-	compMat <- cbind(compMat,newComp)
+	G <- cbind(G,g)
+	if(dim(G)[2]>1) G <- reduceMat(G,compare="less")
+		
+	for (g in 1:dim(G)[2]){
+		
+		if(dim(M)[2]>0){
+		Msub <- as.matrix(M[,which(colSums(M)>=sum(G[,g]))])
+					
+		if(dim(Msub)[2]>0){
+		if(!vecInMat(G[,g],Msub,compare="less")) M <- cbind(M,G[,g])
+		} else M <- cbind(M,G[,g])
+		} else M <- cbind(M,G[,g])
+		
+		
+	}
 	
 	}
 
-	print("reducing matrix")
-	compMat <- reduceMat(compMat,compare="less")
 
-	if (Nbait<N) compMat <- cbind(compMat,t(adjMat[(Nbait+1):N,]))
+	if (Nbait<Nb){
+	if (Nbait+1==Nb) { 
+	   M <- cbind(M,as.matrix(adjMat[Nb,]))
+	} else  M <- cbind(M,t(adjMat[(Nbait+1):Nb,]))
+	}
 
-	newcolnames <- paste("bhmax",1:dim(compMat)[2],sep="")
-	colnames(compMat) <- newcolnames
-	compMat <- compMat[rowOrder,]
+	newcolnames <- paste("bhmax",1:dim(M)[2],sep="")
+	colnames(M) <- newcolnames
+	M <- M[rowOrder,]
 
-	return(compMat)
+	return(M)
+
 }
 

@@ -4,7 +4,7 @@
 
 #currently this function only includes the Fisher's exact portion for complexes with less than 20 proteins. For larger complexes, the binomial criteria is adequate.
 
-LCdelta <- function(comp1,comp2,cMat,dataMat,baitList,simMat,mu,alpha,beta,wsVal=20000000){
+LCdelta <- function(comp1,comp2,cMat,dataMat,baitList,simMat,mu,alpha,Beta,wsVal=20000000){
 
 N <- dim(dataMat)[1]
 M <- dim(dataMat)[2]-N
@@ -22,8 +22,8 @@ nH1 <- length(tP1) - nB1
 temp1 <- matrix(dataMat[tB1,tP1],ncol=(nB1+nH1))
 
 sim1 <- matrix(simMat[tB1,tP1],ncol=(nB1+nH1))
-adjBin1 <- sum(temp1*(mu+alpha+beta*sim1)-log(1+exp(mu+alpha+beta*sim1)))-
-		nB1*(mu+alpha+beta-log(1+exp(mu+alpha+beta)))
+adjBin1 <- sum(temp1*(mu+alpha+Beta*sim1)-log(1+exp(mu+alpha+Beta*sim1)))-
+		nB1*(mu+alpha+Beta-log(1+exp(mu+alpha+Beta)))
 
 X1 <- sum(temp1)-nB1
 
@@ -53,8 +53,8 @@ nH2 <- length(tP2) - nB2
 temp2 <- matrix(dataMat[tB2,tP2],ncol=(nB2+nH2))
 
 sim2 <- matrix(simMat[tB2,tP2],ncol=(nB2+nH2))
-adjBin2 <- sum(temp2*(mu+alpha+beta*sim2)-log(1+exp(mu+alpha+beta*sim2)))-
-		nB2*(mu+alpha+beta-log(1+exp(mu+alpha+beta)))
+adjBin2 <- sum(temp2*(mu+alpha+Beta*sim2)-log(1+exp(mu+alpha+Beta*sim2)))-
+		nB2*(mu+alpha+Beta-log(1+exp(mu+alpha+Beta)))
 
 
 
@@ -96,8 +96,8 @@ nH <- length(tP) - nB
 temp <- matrix(dataMat[tB,tP],ncol=(nB+nH))
 
 sim <- matrix(simMat[tB,tP],ncol=(nB+nH))
-adjBin <- sum(temp*(mu+alpha+beta*sim)-log(1+exp(mu+alpha+beta*sim)))-
-		nB*(mu+alpha+beta-log(1+exp(mu+alpha+beta)))
+adjBin <- sum(temp*(mu+alpha+Beta*sim)-log(1+exp(mu+alpha+Beta*sim)))-
+		nB*(mu+alpha+Beta-log(1+exp(mu+alpha+Beta)))
 
 
 
@@ -134,8 +134,8 @@ diag(exCadjMat) <- 1
 
 
 part4 <-  sum((matrix(1,nB,(nB+nH))-exCadjMat)*(dataMat[tB,tP]*alpha-
-	log(1+exp(mu+alpha+beta*simMat[tB,tP])) + 
-	log(1+exp(mu+beta*simMat[tB,tP]))))
+	log(1+exp(mu+alpha+Beta*simMat[tB,tP])) + 
+	log(1+exp(mu+Beta*simMat[tB,tP]))))
 
 
 ans <- lKm1-lK+part4

@@ -2,7 +2,7 @@
 # a function to run the entire algorithm at once
 
 
-findComplexes <- function(adjMat,simMat=NULL,sensitivity=.75,specificity=.995, beta=0){
+findComplexes <- function(adjMat,simMat=NULL,sensitivity=.75,specificity=.995, Beta=0){
 
 	##find number of baits and number of hits
 
@@ -20,29 +20,27 @@ findComplexes <- function(adjMat,simMat=NULL,sensitivity=.75,specificity=.995, b
 		simMat <- matrix(0,N,N+M)
 		diag(simMat) <- 1
 		colnames(simMat) <- colnames(adjMat)
-		rownames(simMat) <- colnames(adjMat)
+		rownames(simMat) <- rownames(adjMat)
 	}
-
-	##make first N columns of adjMat symmetric to use with bhmaxSubgraph
-
-	adjMatSym <- adjMat
-	adjMatSym[,1:N] <- pmax(adjMatSym[,1:N],t(adjMatSym[,1:N])) 
-	diag(adjMatSym) <- 1
 
 	##find maximal BH-complete subgraphs for initial 
 	##protein complex membership graph estimate
 
-	PCMG <- bhmaxSubgraph(adjMatSym)
+	print("Finding Initial Maximal BH-complete Subgraphs")
+	PCMG <- bhmaxSubgraph(adjMat,unrecip=1*(sensitivity<specificity))
 
 	##combine complexes using LC measure
 
 	#put PCMG in order by number of baits in complex
 	
-	baitOrder <- order(colSums(PCMG[1:N,]),decreasing=T)
+	baitOrder <- order(colSums(PCMG[1:N,]),decreasing=TRUE)
 	PCMGo <- PCMG[,baitOrder]
 	
 	#merge complex estimates using LCdelta criteria
-	PCMG2 <- mergeComplexes(PCMGo,adjMat=adjMat,simMat=simMat,beta=beta)
+	print("Combining Complex Estimates")
+	PCMG2 <-
+	mergeComplexes(PCMGo,adjMat=adjMat,simMat=simMat,Beta=Beta,
+			sensitivity=sensitivity,specificity=specificity)
 
 	return(PCMG2)
 

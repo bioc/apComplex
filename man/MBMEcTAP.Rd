@@ -3,7 +3,6 @@
 \alias{SBMHcTAP}
 \alias{UnRBBcTAP}
 
-
 \docType{data}
 \title{TAP data complex estimates}
 \description{
@@ -15,21 +14,42 @@ data(SBMHcTAP)
 data(UnRBBcTAP)
 }
 \details{
-These are the results from an analysis of the TAP data (Gavin et al., 2002) using the Protein Complex Membership Graph (PCMG) algorithm proposed by Scholtens and Gentleman (2004).  These estimates were constructed using a sensitivity parameter of .75, specificity of .995, and external data based on Gene Ontology cellular component annotation.
+These are the results from an analysis of the TAP data (Gavin et al., 2002) by
+Scholtens and Gentleman (2004) and Scholtens, Vidal, and Gentleman
+(submitted). These estimates were constructed using \code{findComplexes} with a sensitivity
+parameter of .75, specificity of .995, and Beta=-0.2 for externally derived
+similarity measure based on Gene Ontology cellular component annotation (see
+Scholtens and Gentleman (2004)).
 
-\code{MBMEcTAP} contains multi-bait-multi-edge complex estimates.  \code{SBMHcTAP} contains single-bait-multi-hit complex estimates.  \code{UnRBBcTAP} contains unreciprocated bait-bait complex estimates.
+
+\code{MBMEcTAP} contains 260 multi-bait-multi-edge complex estimates.
+\code{SBMHcTAP} contains 325 single-bait-multi-hit complex estimates.
+\code{UnRBBcTAP} contains 123 unreciprocated bait-bait complex estimates.  These data are also available at http://www.bioconductor.org/Docs/Papers/2003/apComplex.
 
 
 }
 \source{
-Scholtens, D. and Gentleman, R.  Making sense of high throughput protein-protein interaction data. (2004).
+Scholtens D and Gentleman R.  Making sense of high-throughput protein-protein
+interaction data.  Statistical Applications in Genetics and Molecular Biology
+3, Article 39 (2004).
+
+Scholtens D, Vidal M, and Gentleman R.  Local modeling of global interactome
+networks.  Submitted.
+
 }
 \references{
 Gavin, et al. Functional organization of the yeast proteome by systematic analysis of protein complexes.  Nature 415, 141-147 (2002).
 
 }
+
+\seealso{\code{\link{TAP}},\code{\link{TAPgraph},\code{\link{yTAP}},\code{findComplexes}}
+}
+
 \examples{
 data(MBMEcTAP)
+MBMEcTAP[1:10,1:3]
+which(MBMEcTAP[,"MBME1"]==1)
+
 
 }
 \keyword{datasets}

@@ -1,12 +1,11 @@
 ##propose complex combinations and compare to LxC measure
 
 ##PCMG is an initial estimate for the PCMG, presumably obtained 
-##by finding bhMaximal subgraphs
+##by finding bhMaximal subgraphs using bhmaxSubgraph
 
+mergeComplexes <- function(PCMG,adjMat,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0){
 
-
-mergeComplexes <- function(PCMG,adjMat,simMat=NULL,sensitivity=.75,specificity=.995,beta=0){
-
+	   
 	bNames <- rownames(adjMat)
 	diag(adjMat) <- 1
 
@@ -15,7 +14,13 @@ mergeComplexes <- function(PCMG,adjMat,simMat=NULL,sensitivity=.75,specificity=.
 
 	N <- dim(adjMat)[1]
 	M <- dim(adjMat)[2]-N
-	if(is.null(simMat)) {simMat <- matrix(0,N,N+M);diag(simMat) <- 1}
+
+	#make simMat with entries 0 and diagonal 1 if simMat not specified
+	if(is.null(simMat)){
+	simMat <- matrix(0,N,N+M)
+	diag(simMat) <- 1
+	rownames(simMat) <- rownames(adjMat)
+	colnames(simMat) <- colnames(adjMat)}
 
 	i <- 1 
 	K <- dim(PCMG)[2]
@@ -29,8 +34,7 @@ mergeComplexes <- function(PCMG,adjMat,simMat=NULL,sensitivity=.75,specificity=.
 
 	while(keepgoing2){
 
-	testset <- which(colSums(PCMG[,i]*PCMG)/
-					pmax(colSums(PCMG),sum(PCMG[,i]))>.25)
+	testset <- which(colSums(PCMG[,i]*PCMG)>0)
 	testset <- testset[-which(testset==i)]
 	Ktemp <- length(testset)
 
@@ -42,7 +46,7 @@ mergeComplexes <- function(PCMG,adjMat,simMat=NULL,sensitivity=.75,specificity=.
 	
 	LCIncs[m] <- LCdelta(i,testset[m],PCMG,dataMat=adjMat,
 				baitList=bNames,simMat=simMat,
-				mu=mu,alpha=alpha,beta=beta)
+				mu=mu,alpha=alpha,Beta=Beta)
 	
 	
 	
@@ -59,15 +63,15 @@ mergeComplexes <- function(PCMG,adjMat,simMat=NULL,sensitivity=.75,specificity=.
 		
 
 	}
-	}
-	else same <- FALSE
+	}else same <- FALSE
 	keepgoing2 <- same
-
 	}
 
 	
 	i <- i+1
 	keepgoing <- i < K
 }
+nC <- dim(PCMG)[2]
+colnames(PCMG) <- paste("Complex",1:nC,sep="")
 return(PCMG)
 }
