@@ -1,0 +1,24 @@
+bhmaxSubgraph           Find maximal BH-complete subgraph
+findComplexes           Estimate a Protein Complex Membership Graph
+                        (PCMG) using protein complex comembership data
+                        from AP-MS technology
+HMSPCIgraph             High-Throughput Mass Spectromic Protein
+                        Complex Identification (HMSPCI) Data from Ho,
+                        et al. (2002)
+HMSPCI                  High-Throughput Mass Spectromic Protein
+                        Complex Identification (HMSPCI) Data from Ho,
+                        et al. (2002)
+LCdelta                 Computes change in LxC measure
+HMSPCI complexes        HMSPCI data complex estimates
+TAP complexes           TAP data complex estimates
+mergeComplexes          Iteratively combine columns in initial PCMG
+                        estimate
+reduceMatNew            Remove matrix columns
+reduceMat               Remove matrix columns
+TAPgraph                Tandem Affinity Purification (TAP) Data from
+                        Gavin et al. (2002)
+TAP                     Tandem Affinity Purification (TAP) Data from
+                        Gavin et al. (2002)
+vecInMat                Vector in Matrix
+whichVecInMat           Which Vector in Matrix
+yTAP                    yTAP Complexes published Gavin, et al. (2002).
