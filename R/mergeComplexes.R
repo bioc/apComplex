@@ -57,7 +57,7 @@ mergeComplexes <- function(PCMG,adjMat,simMat=NULL,sensitivity=.75,specificity=.
 	if(same){
 		thisone <- testset[which.max(LCIncs)]
 		PCMG[,i] <- pmax(PCMG[,i],PCMG[,thisone])
-		PCMG <- PCMG[,-thisone]
+		PCMG <- as.matrix(PCMG[,-thisone])
 		K <- dim(PCMG)[2]
 		if(thisone<i) i <- i-1
 		
