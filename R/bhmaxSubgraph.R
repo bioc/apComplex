@@ -71,7 +71,9 @@ bhmaxSubgraph <- function(adjMat,unrecip=1){
 		
 		v <- M[,V[k]]
 
-		if(sum(v[(i+1):(Nb+Nh)]>g[(i+1):(Nb+Nh)])>0){
+		#na.rm=TRUE statement included 
+		#for cases when all proteins are baits
+		if(sum(v[(i+1):(Nb+Nh)]>g[(i+1):(Nb+Nh)],na.rm=TRUE)>0){
 
 		lose[k] <- TRUE		
 
