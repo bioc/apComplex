@@ -7,9 +7,9 @@ sortComplexes <- function(PCMG,adjMat){
    nComps <- dim(PCMG)[2]
 	    
 
-   SBMHs <- which(colSums(PCMG[bNames,])==1)
+   SBMHs <- which(colSums(PCMG[bNames,,drop=FALSE])==1)
 
-   UnRBBs <- which(colSums(PCMG)==2 & colSums(PCMG[bNames,])==2)
+   UnRBBs <- which(colSums(PCMG)==2 & colSums(PCMG[bNames,,drop=FALSE])==2)
    keep <- rep(TRUE,length(UnRBBs))
    for (i in UnRBBs){
        tBs <- which(PCMG[,i]==1)
