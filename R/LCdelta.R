@@ -13,7 +13,7 @@ M <- dim(dataMat)[2]-N
 #compute likelihood contribution for separate complexes
 
 #first for comp1
-tP1 <- names(which(cMat[,comp1,drop=FALSE]==1))   
+tP1 <- names(which(cMat[,comp1]==1))   
 tB1 <- tP1[which(tP1 %in% baitList)]
 
 nB1 <- length(tB1)
@@ -44,7 +44,7 @@ bh11 <- c(b11,h11)
 
 
 #repeat for comp2
-tP2 <- names(which(cMat[,comp2,drop=FALSE]==1))
+tP2 <- names(which(cMat[,comp2]==1))
 tB2 <- tP2[which(tP2 %in% baitList)]
 
 nB2 <- length(tB2)
@@ -87,7 +87,7 @@ lK <- cX1+cX2+adjBin1+adjBin2
 
 #combine complexes and compute likelihood contribution
 
-tP <- names(which(rowSums(cMat[,c(comp1,comp2),drop=FALSE])>0))
+tP <- names(which(rowSums(cMat[,c(comp1,comp2)])>0))
 tB <- tP[which(tP %in% baitList)]
 
 nB <- length(tB)
@@ -127,9 +127,9 @@ lKm1 <- cX+adjBin
 #find adjustments for edges that used to be in "no complex" bin
 #make sure dataMat and cMat have their rows and columns in the same order
 
-theseComps <- which(colSums(cMat[tP,,drop=FALSE])>0)
+theseComps <- which(colSums(cMat[tP,])>0)
 
-exCadjMat <- (1*(cMat[tP,theseComps,drop=FALSE] %*% t(cMat[tP,theseComps,drop=FALSE])) >0)[tB,,drop=FALSE]
+exCadjMat <- (1*(cMat[tP,theseComps] %*% t(cMat[tP,theseComps])) >0)[tB,]
 diag(exCadjMat) <- 1
 
 

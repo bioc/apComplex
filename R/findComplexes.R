@@ -33,8 +33,8 @@ findComplexes <- function(adjMat,simMat=NULL,sensitivity=.75,specificity=.995, B
 
 	#put PCMG in order by number of baits in complex
 	
-	baitOrder <- order(colSums(PCMG[1:N,,drop=FALSE]),decreasing=TRUE)
-	PCMGo <- PCMG[,baitOrder,drop=FALSE]
+	baitOrder <- order(colSums(PCMG[1:N,]),decreasing=TRUE)
+	PCMGo <- PCMG[,baitOrder]
 	
 	#merge complex estimates using LCdelta criteria
 	print("Combining Complex Estimates")

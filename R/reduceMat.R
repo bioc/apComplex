@@ -26,7 +26,7 @@ reduceMat <- function(mat,compare="equal"){
 			notest <- which(mat[temp,]>0)
 			}
 			if(length(temp)>1){
-			notest <- which(colSums(mat[temp,,drop=FALSE])>0)
+			notest <- which(colSums(mat[temp,])>0)
 			}
 		} else {notest <-  NULL}
 				
@@ -51,7 +51,7 @@ reduceMat <- function(mat,compare="equal"){
 			}
 		}	
 
-	matRed <- mat[,keep,drop=FALSE]
+	matRed <- mat[,keep]
 
 	}
 
@@ -60,7 +60,7 @@ reduceMat <- function(mat,compare="equal"){
 		#order columns from largest to smallest column sum
 
 		ord <- order(colSums(mat),decreasing=TRUE)
-		matOrd <- mat[,ord,drop=FALSE]
+		matOrd <- mat[,ord]
 
 		nCols <- dim(mat)[2]
 
@@ -71,10 +71,10 @@ reduceMat <- function(mat,compare="equal"){
 		if(length(temp)>0){			
 
 			if(length(temp)==1){
-			testset <- which(matOrd[temp,,drop=FALSE]==0)
+			testset <- which(matOrd[temp,]==0)
 			}
 			if(length(temp)>1){
-			testset <- which(colSums(matOrd[temp,,drop=FALSE])==0)
+			testset <- which(colSums(matOrd[temp,])==0)
 			}
 		} else {testset <- 1:nCols}
 				
@@ -84,15 +84,15 @@ reduceMat <- function(mat,compare="equal"){
 
 		for (i in testset){
 
-		Vec <- matOrd[,i,drop=FALSE]
-		test <- vecInMat(Vec,as.matrix(matOrd[,1:(i-1),drop=FALSE]),
+		Vec <- matOrd[,i]
+		test <- vecInMat(Vec,as.matrix(matOrd[,1:(i-1)]),
 							compare="less")
 		if(test) lose <- c(lose,i) 
 
 		}		
 	
 	if(length(lose)>0){
-		matRed <- mat[,-ord[lose],drop=FALSE]
+		matRed <- mat[,-ord[lose]]
 	}else matRed <- mat
 	}	
 

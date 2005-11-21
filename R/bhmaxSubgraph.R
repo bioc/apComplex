@@ -23,8 +23,8 @@ bhmaxSubgraph <- function(adjMat,unrecip=1){
 	
 	#make adjMat[,1:Nb] symmetric
 	if(unrecip==0){
-	 adjMat[,1:Nb,drop=FALSE] <- pmin(adjMat[,1:Nb,drop=FALSE],t(adjMat[,1:Nb,drop=FALSE]))
-	} else adjMat[,1:Nb,drop=FALSE] <- pmax(adjMat[,1:Nb,drop=FALSE],t(adjMat[,1:Nb,drop=FALSE]))
+	 adjMat[,1:Nb] <- pmin(adjMat[,1:Nb],t(adjMat[,1:Nb]))
+	} else adjMat[,1:Nb] <- pmax(adjMat[,1:Nb],t(adjMat[,1:Nb]))
 
 	#record the order of the columns of adjMat so the order of the
 	#rows of the affiliation matrix will match the original column order
@@ -37,12 +37,12 @@ bhmaxSubgraph <- function(adjMat,unrecip=1){
 	#first find baits that only have hit pairs  
 	#will put these in at the end
 
-	hitComps <- which(rowSums(adjMat[,1:Nb,drop=FALSE])==1)
+	hitComps <- which(rowSums(adjMat[,1:Nb])==1)
 	baitComps <- rownames(adjMat)
 	if(length(hitComps)>0) 	baitComps <- baitComps[-hitComps]
 	
 	#now reorder by complex size - smaller first
-	baitComps <- baitComps[order(rowSums(adjMat[baitComps,,drop=FALSE]))]
+	baitComps <- baitComps[order(rowSums(adjMat[baitComps,]))]
 
 
 	Nbait <- length(baitComps)

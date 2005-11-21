@@ -34,7 +34,7 @@ mergeComplexes <- function(PCMG,adjMat,simMat=NULL,sensitivity=.75,specificity=.
 
 	while(keepgoing2){
 
-	testset <- which(colSums(PCMG[,i,drop=FALSE]*PCMG)>0)
+	testset <- which(colSums(PCMG[,i]*PCMG)>0)
 	testset <- testset[-which(testset==i)]
 	Ktemp <- length(testset)
 
