@@ -41,7 +41,7 @@ interaction data.  Statistical Applications in Genetics and Molecular Biology
 3, Article 39 (2004).
 
 Scholtens D, Vidal M, and Gentleman R.  Local modeling of global interactome
-networks.  Submitted.
+networks.  Bioinformatics 21, 3548-3557 (2005).
 }
 
 \seealso{\code{\link{MBMEcHMSPCI}},\code{\link{SBMHcHMSPCI}},\code{\link{UnRBBcHMSPCI}},\code{\link{TAP}}
