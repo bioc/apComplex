@@ -19,14 +19,21 @@ sortComplexes <- function(PCMG,adjMat){
 
    MBMEs <- c(1:nComps)[!(1:nComps) %in% c(SBMHs,UnRBBs)]
 
+   if(length(MBMEs)>0){
    MBME <- as.matrix(PCMG[,MBMEs])
    colnames(MBME) <- paste("MBME",1:length(MBMEs),sep="")
+   } else MBME <- NA
 
+   if(length(SBMHs)>0){
    SBMH <- as.matrix(PCMG[,SBMHs])
    colnames(SBMH) <- paste("SBMH",1:length(SBMHs),sep="")
+   } else SBMH <- NA
 
+   if(length(UnRBBs)>0){
    UnRBB <- as.matrix(PCMG[,UnRBBs])
    colnames(UnRBB) <- paste("UnRBB",1:length(UnRBBs),sep="")
+   } else UnRBB <- NA
+
 
    sComps <- list(MBME=MBME,SBMH=SBMH,UnRBB=UnRBB)
 
