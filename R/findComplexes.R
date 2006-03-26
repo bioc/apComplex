@@ -2,7 +2,7 @@
 # a function to run the entire algorithm at once
 
 
-findComplexes <- function(adjMat,simMat=NULL,sensitivity=.75,specificity=.995, Beta=0){
+findComplexes <- function(adjMat,simMat=NULL,sensitivity=.75,specificity=.995, Beta=0, wsVal = NULL){
 
 	##find number of baits and number of hits
 
@@ -40,7 +40,7 @@ findComplexes <- function(adjMat,simMat=NULL,sensitivity=.75,specificity=.995, B
 	print("Combining Complex Estimates")
 	PCMG2 <-
 	mergeComplexes(PCMGo,adjMat=adjMat,simMat=simMat,Beta=Beta,
-			sensitivity=sensitivity,specificity=specificity)
+			sensitivity=sensitivity,specificity=specificity, wsVal = wsVal)
 
 	return(PCMG2)
 

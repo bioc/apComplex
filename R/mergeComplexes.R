@@ -3,7 +3,7 @@
 ##PCMG is an initial estimate for the PCMG, presumably obtained 
 ##by finding bhMaximal subgraphs using bhmaxSubgraph
 
-mergeComplexes <- function(PCMG,adjMat,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0){
+mergeComplexes <- function(PCMG,adjMat,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0, wsVal = NULL){
 
 	   
 	bNames <- rownames(adjMat)
