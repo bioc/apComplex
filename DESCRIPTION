@@ -1,6 +1,6 @@
 Package: apComplex
 Title: Estimate protein complex membership using AP-MS protein data
-Version: 1.5.6
+Version: 1.5.7
 Author: Denise Scholtens <dscholtens@northwestern.edu>
 Description: Functions to estimate a bipartite graph of protein
         complex membership using AP-MS data.
