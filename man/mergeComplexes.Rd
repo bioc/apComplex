@@ -6,7 +6,8 @@
 Repeatedly applies the function \code{LCdelta} to make combinations of columns in the affiliation matrix representing the protein complex membership graph (PCMG) for AP-MS data.
 }
 \usage{
-mergeComplexes(PCMG, adjMat, simMat = NULL, sensitivity = 0.75, specificity = 0.995, Beta = 0)
+mergeComplexes(PCMG, adjMat, simMat = NULL, sensitivity = 0.75,
+specificity = 0.995, Beta = 0, wsVal=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -15,7 +16,10 @@ mergeComplexes(PCMG, adjMat, simMat = NULL, sensitivity = 0.75, specificity = 0.
   \item{simMat}{An optional square matrix with entries between 0 and 1.  Rows and columns correspond to the proteins in the experiment, and should be reported in the same order as the columns of \code{adjMat}.  Higher values in this matrix are interpreted to mean higher similarity for protein pairs.}
   \item{sensitivity}{Believed sensitivity of AP-MS technology.}
   \item{specificity}{Believed specificity of AP-MS technology.}
-  \item{Beta}{Optional additional parameter for the weight to give data in \code{simMat} in the logistic regression model.}
+  \item{Beta}{Optional additional parameter for the weight to give data
+    in \code{simMat} in the logistic regression model.}
+  \item{wsVal}{A numeric. This is the value assigned to the work-space
+    in the call to fisher.test.}
 }
 \details{
 
