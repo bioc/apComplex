@@ -8,5 +8,5 @@ Depends: graph
 Suggests: Rgraphviz
 Maintainer: Denise Scholtens <dscholtens@northwestern.edu>
 License: LGPL
-biocViews: Visualization, MassSpectrometry
+biocViews: Visualization, MassSpectrometry, GraphsAndNetworks
 
