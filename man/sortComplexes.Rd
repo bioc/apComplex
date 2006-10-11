@@ -3,8 +3,8 @@
 
 \title{Sort complex estimates}
 \description{
-Sorts complexes recorded in PCMG affiliation matrix into three separate
-affiliation matrices containing MBME, SBMH, and UnRBB complexes.
+Sorts complexes recorded in PCMG list into three separate
+lists containing MBME, SBMH, and UnRBB complexes.
 }
 \usage{
 sortComplexes(PCMG, adjMat)
@@ -23,7 +23,7 @@ an unreciprocated edge.
 
 }
 \value{
-A list of affiliation matrices representing the MBME, SBMH, and UnRBB complex
+A list of lists representing the MBME, SBMH, and UnRBB complex
 estimates. 
 }
 

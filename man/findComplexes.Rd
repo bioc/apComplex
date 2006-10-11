@@ -8,7 +8,7 @@ Gentleman (2004) and Scholtens, Vidal, and Gentleman (submitted), beginning with
 }
 \usage{
 findComplexes(adjMat, simMat = NULL, sensitivity = 0.75, specificity =
-0.995, Beta = 0, wsVal=NULL)
+0.995, Beta = 0, commonFrac=2/3, wsVal=20000000)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,14 +18,22 @@ findComplexes(adjMat, simMat = NULL, sensitivity = 0.75, specificity =
   \item{specificity}{Believed specificity of AP-MS technology.}
   \item{Beta}{Optional additional parameter for the weight to give data
     in \code{simMat} in the logistic regression model.}
+  \item{commonFrac}{This is the fraction of baits that need to be 
+overlapping for a complex combination to be considered.}
   \item{wsVal}{A numeric. This is the value assigned as the work-space
     in the call to fisher.test}
 }
 \details{
 \code{findComplexes} performs all steps in the complex estimation algorithm using the apComplex package functions \code{bhmaxSubgraph}, \code{LCdelta}, and \code{mergeComplexes}.  These steps can also be performed separately by the user.  
-}
+
+By default \code{commonFrac} is set relatively high at 2/3.  This means 
+that some potentially reasonable complex combinations could be missed. For 
+smaller data sets, users may consider decreasing the fraction.  For larger 
+data sets, this may cause a large increase in computation time. } 
+
 \value{
-An affiliation matrix representing the estimated protein complex memberships. 
+A list of character vectors containing the names of the proteins in the 
+estimated complexes.
 }
 \references{
 Scholtens D and Gentleman R.  Making sense of high-throughput protein-protein
@@ -37,7 +45,7 @@ networks.  Bioinformatics 21, 3548-3557 (2005).
 }
 \author{Denise Scholtens}
 
-\seealso{\code{\link{bhmaxSubgraph}},code{\link{LCdelta}},\code{\link{mergeComplexes}}}
+\seealso{\code{\link{bhmaxSubgraph}},\code{\link{mergeComplexes}}}
 \examples{
 
 data(apEX)

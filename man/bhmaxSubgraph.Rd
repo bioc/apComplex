@@ -27,15 +27,17 @@ bhmaxSubgraph(adjMat,unrecip=1)
 
 A BH-complete subgraph with n bait nodes and m hit-only nodes for AP-MS data is defined as a subgraph for which all n*(n-1)+nm directed edges exist.  A maximal BH-complete subgraph is a BH-complete subgraph which is not contained in any other BH-complete subgraph.
 
-This function first forms a symmetric matrix out of the first N columns of
-\code{adjMat}.  By default, unreciprocated bait-bait observations will be
+By default, unreciprocated bait-bait observations will be
 treated as present.  If \code{unrecip} is set to 0, they will be treated as
 absent.  If the sensitivity of the AP-MS technology is believed to be less
 than the specificity, then it is suggested that \code{unrecip}=1.
 
+This function calls \code{maxCliques} from the RBGL package.
+
 }
 \value{
-A matrix with (N+M) rows and a number of columns equal to the number of maximal BH-complete subgraphs.  An entry of "1" in the ith row and jth column indicates membership of the ith protein in the jth maximal BH-complete subgraph.
+A list of length one named 'maxCliques' which is itself a list of 
+character vectors containing the names of the elements in the cliques.
 }
 
 \references{

@@ -4,34 +4,37 @@ sortComplexes <- function(PCMG,adjMat){
 
    diag(adjMat) <- 0
    bNames <- rownames(adjMat)
-   nComps <- dim(PCMG)[2]
+   nComps <- length(PCMG)
+
+   nBFUN <- function(x) sum(x %in% bNames)
+   nBs <- unlist(lapply(PCMG,FUN=nBFUN))
+   nT <- unlist(lapply(PCMG,FUN=length))
 	    
+   SBMHi <- which(nBs==1)
+   SBMH <- PCMG[SBMHi]
 
-   SBMHs <- which(colSums(PCMG[bNames,])==1)
-
-   UnRBBs <- which(colSums(PCMG)==2 & colSums(PCMG[bNames,])==2)
-   keep <- rep(TRUE,length(UnRBBs))
-   for (i in UnRBBs){
-       tBs <- which(PCMG[,i]==1)
-       keep[which(UnRBBs==i)] <- sum(adjMat[tBs,tBs])==1
+   UnRBBi <- which(nBs==2 & nT==2)
+   keep <- rep(TRUE,length(UnRBBi))
+   for (i in 1:length(UnRBBi)){
+       tBs <- PCMG[[UnRBBi[i]]]
+       keep[i] <- sum(adjMat[tBs,tBs])==1
    }   
-   UnRBBs <- UnRBBs[keep]
+   UnRBBi <- UnRBBi[keep]
+   UnRBB <- PCMG[UnRBBi]
 
-   MBMEs <- c(1:nComps)[!(1:nComps) %in% c(SBMHs,UnRBBs)]
+   MBMEi <- c(1:nComps)[!(1:nComps) %in% c(SBMHi,UnRBBi)]
+   MBME <- PCMG[MBMEi]
 
-   if(length(MBMEs)>0){
-   MBME <- as.matrix(PCMG[,MBMEs])
-   colnames(MBME) <- paste("MBME",1:length(MBMEs),sep="")
+   if(length(MBMEi)>0){
+   names(MBME) <- paste("MBME",1:length(MBMEi),sep="")
    } else MBME <- NA
 
-   if(length(SBMHs)>0){
-   SBMH <- as.matrix(PCMG[,SBMHs])
-   colnames(SBMH) <- paste("SBMH",1:length(SBMHs),sep="")
+   if(length(SBMHi)>0){
+   names(SBMH) <- paste("SBMH",1:length(SBMHi),sep="")
    } else SBMH <- NA
 
-   if(length(UnRBBs)>0){
-   UnRBB <- as.matrix(PCMG[,UnRBBs])
-   colnames(UnRBB) <- paste("UnRBB",1:length(UnRBBs),sep="")
+   if(length(UnRBBi)>0){
+   names(UnRBB) <- paste("UnRBB",1:length(UnRBBi),sep="")
    } else UnRBB <- NA
 
 
