@@ -3,7 +3,9 @@
 # a function to run the entire algorithm at once
 
 
-findComplexes <- function(adjMat,simMat=NULL,sensitivity=.75,specificity=.995, Beta=0,commonFrac=2/3,wsVal = 20000000){
+findComplexes <- 
+function(adjMat,simMat=NULL,sensitivity=.75,specificity=.995, 
+Beta=0,commonFrac=2/3,wsVal = 2e7){
 
 	##find number of baits and number of hits
 

@@ -8,7 +8,7 @@ Gentleman (2004) and Scholtens, Vidal, and Gentleman (submitted), beginning with
 }
 \usage{
 findComplexes(adjMat, simMat = NULL, sensitivity = 0.75, specificity =
-0.995, Beta = 0, commonFrac=2/3, wsVal=20000000)
+0.995, Beta = 0, commonFrac=2/3, wsVal=2e7)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

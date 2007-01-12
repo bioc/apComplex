@@ -34,7 +34,7 @@ LCjoinLchange <- function(x,comp,complexes,adjMat,ccMat,bNames,simMat,mu,alpha,B
 
 }
 
-LCjoinfisher <- function(x,comp,adjMat,bNames,nMax,wsVal=20000000){
+LCjoinfisher <- function(x,comp,adjMat,bNames,nMax,wsVal=2e7){
 
 
        y <- unique(c(x,comp))

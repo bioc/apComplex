@@ -7,7 +7,7 @@ Repeatedly applies the function \code{LCdelta} to make combinations of columns i
 }
 \usage{
 mergeComplexes(bhmax, adjMat, simMat = NULL, sensitivity = 0.75,
-specificity = 0.995, Beta = 0, commonFrac=2/3, wsVal=20000000)
+specificity = 0.995, Beta = 0, commonFrac=2/3, wsVal=2e7)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

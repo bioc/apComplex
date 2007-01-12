@@ -7,7 +7,9 @@
 #this uses the following functions: adjBinFUN, fisherFUN,
 #LCjoinadjBin, LCjoinfisher, and LCjoinLchange
 
-mergeComplexes <- function(bhmax,adjMat,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0,commonFrac=2/3,wsVal = 20000000){
+mergeComplexes <- 
+function(bhmax,adjMat,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0,commonFrac=2/3,wsVal 
+= 2e7){
 
 	stopifnot("maxCliques" %in% names(bhmax))
 

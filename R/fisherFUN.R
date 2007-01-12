@@ -1,7 +1,7 @@
 
 #adjMat = 1 for bait-bait entries
 
-fisherFUN <- function(x,adjMat,bNames,nMax,wsVal=20000000){
+fisherFUN <- function(x,adjMat,bNames,nMax,wsVal=2e7){
 
 	  
 	  xB <- intersect(x,bNames)	
@@ -18,6 +18,8 @@ fisherFUN <- function(x,adjMat,bNames,nMax,wsVal=20000000){
 	  bh1 <- colSums(temp)
 	  bh1[xB] <- bh1[xB] - 1
 	  bh0 <- colSums(1-temp)
+
+	  if(length(bh0)>15) wsVal <- 2e9
 
 	  ans <- log(fisher.test(rbind(bh0,bh1),workspace=wsVal)$p.value)
 
