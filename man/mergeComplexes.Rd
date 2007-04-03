@@ -1,5 +1,6 @@
 \name{mergeComplexes}
 \alias{mergeComplexes}
+\alias{mergeComplexes2}
 
 \title{Iteratively combine columns in initial PCMG estimate}
 \description{
@@ -8,11 +9,13 @@ Repeatedly applies the function \code{LCdelta} to make combinations of columns i
 \usage{
 mergeComplexes(bhmax, adjMat, simMat = NULL, sensitivity = 0.75,
 specificity = 0.995, Beta = 0, commonFrac=2/3, wsVal=2e7)
-}
+mergeComplexes2(bhmax,adjMat,VBs=NULL,VPs=NULL,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0,commonFrac=2/3,wsVal = 2e7)}
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{bhmax}{Initial complex estimates coming from bhmaxSubgraph}
   \item{adjMat}{Adjacency matrix of bait-hit data from an AP-MS experiment.  Rows correspond to baits and columns to hits.}
+  \item{VBs}{\code{VBs} is an optional vector of viable baits.}
+  \item{VPs}{\code{VPs} is an optional vector of viable prey.}
   \item{simMat}{An optional square matrix with entries between 0 and 1.  Rows and columns correspond to the proteins in the experiment, and should be reported in the same order as the columns of \code{adjMat}.  Higher values in this matrix are interpreted to mean higher similarity for protein pairs.}
   \item{sensitivity}{Believed sensitivity of AP-MS technology.}
   \item{specificity}{Believed specificity of AP-MS technology.}

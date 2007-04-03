@@ -1,5 +1,6 @@
 \name{findComplexes}
 \alias{findComplexes}
+\alias{findComplexes2}
 
 \title{Estimate a Protein Complex Membership Graph (PCMG) using protein complex comembership data from AP-MS technology}
 \description{
@@ -9,10 +10,14 @@ Gentleman (2004) and Scholtens, Vidal, and Gentleman (submitted), beginning with
 \usage{
 findComplexes(adjMat, simMat = NULL, sensitivity = 0.75, specificity =
 0.995, Beta = 0, commonFrac=2/3, wsVal=2e7)
+findComplexes2(adjMat,VBs=NULL,VPs=NULL,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0,commonFrac=2/3,wsVal
+= 2e7)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{adjMat}{Adjacency matrix of bait-hit data from an AP-MS experiment.  Rows correspond to baits and columns to hits.}
+  \item{VBs}{\code{VBs} is an optional vector of viable baits.}
+  \item{VPs}{\code{VPs} is an optional vector of viable prey.}
   \item{simMat}{An optional square matrix with entries between 0 and 1.  Rows and columns correspond to the proteins in the experiment, and should be reported in the same order as the columns of \code{adjMat}.  Higher values in this matrix are interpreted to mean higher similarity for protein pairs.}
   \item{sensitivity}{Believed sensitivity of AP-MS technology.}
   \item{specificity}{Believed specificity of AP-MS technology.}
@@ -25,6 +30,10 @@ overlapping for a complex combination to be considered.}
 }
 \details{
 \code{findComplexes} performs all steps in the complex estimation algorithm using the apComplex package functions \code{bhmaxSubgraph}, \code{LCdelta}, and \code{mergeComplexes}.  These steps can also be performed separately by the user.  
+
+If \code{VBs} and/or \code{VPs} are not specified, then by default \code{VBs}
+will be assigned the set of baits that detect at least one prey and \code{VPs}
+the set of prey that are detected by at least one bait.
 
 By default \code{commonFrac} is set relatively high at 2/3.  This means 
 that some potentially reasonable complex combinations could be missed. For 

@@ -1,5 +1,6 @@
 \name{bhmaxSubgraph}
 \alias{bhmaxSubgraph}
+\alias{bhmaxSubgraph2}
 
 
 \title{Find maximal BH-complete subgraph}
@@ -9,6 +10,7 @@ Given an adjacency matrix of bait-hit AP-MS protein data, this function finds th
 }
 \usage{
 bhmaxSubgraph(adjMat,unrecip=1)
+bhmaxSubgraph2(adjMat,VBs=NULL,VPs=NULL,unrecip=1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,6 +21,10 @@ bhmaxSubgraph(adjMat,unrecip=1)
   column of \code{adjMat} corresponds to bait protein i finding protein j as a
   hit.  All other entries should be 0. }
 
+  \item{VBs}{\code{VBs} is an optional vector of viable baits.}
+
+  \item{VPs}{\code{VPs} is an optional vector of viable prey.}
+
   \item{unrecip}{By default set to 1 so that unreciprocated bait-bait edges
   are treated as present.  If set to 0, unreciprocated bait-bait edges will be
   treated as absent.}  
@@ -26,6 +32,10 @@ bhmaxSubgraph(adjMat,unrecip=1)
 \details{
 
 A BH-complete subgraph with n bait nodes and m hit-only nodes for AP-MS data is defined as a subgraph for which all n*(n-1)+nm directed edges exist.  A maximal BH-complete subgraph is a BH-complete subgraph which is not contained in any other BH-complete subgraph.
+
+If \code{VBs} and/or \code{VPs} are not specified, then by default \code{VBs}
+will be assigned the set of baits that detect at least one prey and \code{VPs}
+the set of prey that are detected by at least one bait.
 
 By default, unreciprocated bait-bait observations will be
 treated as present.  If \code{unrecip} is set to 0, they will be treated as

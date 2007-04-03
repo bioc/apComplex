@@ -5,6 +5,11 @@
 \alias{LCjoinadjBin}
 \alias{LCjoinfisher}
 \alias{LCjoinLchange}
+\alias{adjBinFUN2}
+\alias{fisherFUN2}
+\alias{LCjoinadjBin2}
+\alias{LCjoinfisher2}
+\alias{LCjoinLchange2}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Computes change in LxC measure}

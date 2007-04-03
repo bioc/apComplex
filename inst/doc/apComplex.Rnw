@@ -46,7 +46,7 @@ specify the believed sensitivity and specificity of the AP-MS technology and
 may incorporate external similarity data for the proteins under
 investigation.  The statistical details of the algorithm are reported in
 Scholtens and Gentleman (2004) and the biological implications are discussed
-in Scholtens, Vidal, and Gentleman (submitted).  
+in Scholtens, Vidal, and Gentleman (2005).  
 
 <<setup, echo=FALSE, hide=TRUE>>=
 plotGraph <- function(x, y, ...) {
@@ -449,12 +449,12 @@ available in \Robject{yTAP}.
 data(TAP)
 dim(TAP)
 data(TAPgraph)
-TAPgraph
+
 which(TAP["Abd1",]==1)
 adj(TAPgraph,"Abd1")
 
 data(yTAP)
-yTAP[1]
+
 @
 
 \Robject{HMSPCI} is an adjacency matrix of the AP-MS data (called `HMS-PCI') reported by Ho, et
@@ -466,7 +466,6 @@ hit-only proteins.  \Robject{HMSPCIgraph} contains a graph of class
 data(HMSPCI)
 dim(HMSPCI)
 data(HMSPCIgraph)
-HMSPCIgraph
 which(HMSPCI["YAL015C",]==1)
 adj(HMSPCIgraph,"YAL015C")
 @
