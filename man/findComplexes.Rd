@@ -1,6 +1,5 @@
 \name{findComplexes}
 \alias{findComplexes}
-\alias{findComplexes2}
 
 \title{Estimate a Protein Complex Membership Graph (PCMG) using protein complex comembership data from AP-MS technology}
 \description{
@@ -8,9 +7,7 @@ Performs all steps in the local modeling algorithm described by Scholtens and
 Gentleman (2004) and Scholtens, Vidal, and Gentleman (submitted), beginning with an adjacency matrix recording bait-hit AP-MS data.
 }
 \usage{
-findComplexes(adjMat, simMat = NULL, sensitivity = 0.75, specificity =
-0.995, Beta = 0, commonFrac=2/3, wsVal=2e7)
-findComplexes2(adjMat,VBs=NULL,VPs=NULL,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0,commonFrac=2/3,wsVal
+findComplexes(adjMat,VBs=NULL,VPs=NULL,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0,commonFrac=2/3,wsVal
 = 2e7)
 }
 %- maybe also 'usage' for other objects documented here.

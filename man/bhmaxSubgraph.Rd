@@ -1,6 +1,5 @@
 \name{bhmaxSubgraph}
 \alias{bhmaxSubgraph}
-\alias{bhmaxSubgraph2}
 
 
 \title{Find maximal BH-complete subgraph}
@@ -9,8 +8,7 @@
 Given an adjacency matrix of bait-hit AP-MS protein data, this function finds the maximal BH-complete subgraphs and reports them as an affiliation matrix.
 }
 \usage{
-bhmaxSubgraph(adjMat,unrecip=1)
-bhmaxSubgraph2(adjMat,VBs=NULL,VPs=NULL,unrecip=1)
+bhmaxSubgraph(adjMat,VBs=NULL,VPs=NULL,unrecip=1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

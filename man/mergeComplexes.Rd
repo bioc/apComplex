@@ -1,15 +1,12 @@
 \name{mergeComplexes}
 \alias{mergeComplexes}
-\alias{mergeComplexes2}
 
 \title{Iteratively combine columns in initial PCMG estimate}
 \description{
 Repeatedly applies the function \code{LCdelta} to make combinations of columns in the affiliation matrix representing the protein complex membership graph (PCMG) for AP-MS data.
 }
 \usage{
-mergeComplexes(bhmax, adjMat, simMat = NULL, sensitivity = 0.75,
-specificity = 0.995, Beta = 0, commonFrac=2/3, wsVal=2e7)
-mergeComplexes2(bhmax,adjMat,VBs=NULL,VPs=NULL,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0,commonFrac=2/3,wsVal = 2e7)}
+mergeComplexes(bhmax,adjMat,VBs=NULL,VPs=NULL,simMat=NULL,sensitivity=.75,specificity=.995,Beta=0,commonFrac=2/3,wsVal = 2e7)}
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{bhmax}{Initial complex estimates coming from bhmaxSubgraph}
