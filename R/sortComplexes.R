@@ -17,7 +17,8 @@ sortComplexes <- function(PCMG,adjMat){
    keep <- rep(TRUE,length(UnRBBi))
    for (i in 1:length(UnRBBi)){
        tBs <- PCMG[[UnRBBi[i]]]
-       keep[i] <- sum(adjMat[tBs,tBs])==1
+       tVBPs <- tBs[tBs %in% colnames(adjMat)]
+       keep[i] <- sum(adjMat[tBs,tVBPs])==1
    }   
    UnRBBi <- UnRBBi[keep]
    UnRBB <- PCMG[UnRBBi]
