@@ -6,7 +6,7 @@ findComplexes <-
 function(adjMat,VBs=NULL,VPs=NULL,simMat=NULL,sensitivity=.75,specificity=.995, 
 Beta=0,commonFrac=2/3,wsVal = 2e7){
 
-	##find number of baits and number of hits
+	##find viable baits and viable prey if not specified in VBs and VPs
 
         !is.null(colnames(adjMat)) || stop("Columns of adjMat must be named")
         !is.null(rownames(adjMat))|| stop("Rows of adjMat must be named")
