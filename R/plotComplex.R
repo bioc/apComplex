@@ -17,6 +17,7 @@ function(complexMembers,g,VBs,VPs,geneName=FALSE,baitColor="yellow",preyColor="w
   
   
   sg=subGraph(complexMembers,g)
+  sg = removeSelfLoops(sg)
   
   nAttrs = list()
   eAttrs = list()
