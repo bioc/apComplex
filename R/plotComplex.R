@@ -22,13 +22,17 @@ function(complexMembers,g,VBs,VPs,geneName=FALSE,baitColor="yellow",preyColor="w
   eAttrs = list()
   
   baits = intersect(complexMembers,VBs)
-  
+
+  nAttrs$shape = rep("ellipse",length(complexMembers))
+  names(nAttrs$shape) = complexMembers  
   nAttrs$fillcolor = rep(preyColor,length(complexMembers))
   names(nAttrs$fillcolor) = complexMembers
   nAttrs$fillcolor[baits] = baitColor
   
   if(geneName){
 	nodeLabels = unlist(mget(complexMembers,env=YEASTGENENAME))
+	naVals = which(is.na(nodeLabels))
+	nodeLabels[naVals] = names(nodeLabels)[naVals]
 	nAttrs$label = nodeLabels
 	}
 
