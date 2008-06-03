@@ -1,10 +1,10 @@
 Package: apComplex
 Title: Estimate protein complex membership using AP-MS protein data
-Version: 2.7.0
+Version: 2.7.1
 Author: Denise Scholtens <dscholtens@northwestern.edu>
 Description: Functions to estimate a bipartite graph of protein
         complex membership using AP-MS data.
-Depends: graph, RBGL, Rgraphviz, YEAST
+Depends: graph, RBGL, Rgraphviz, org.Sc.sgd.db
 Suggests: 
 Maintainer: Denise Scholtens <dscholtens@northwestern.edu>
 License: LGPL
