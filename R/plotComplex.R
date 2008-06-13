@@ -31,7 +31,7 @@ function(complexMembers,g,VBs,VPs,geneName=FALSE,baitColor="yellow",preyColor="w
   nAttrs$fillcolor[baits] = baitColor
   
   if(geneName){
-	nodeLabels = unlist(mget(complexMembers,env=YEASTGENENAME))
+	nodeLabels = unlist(mget(complexMembers,env=org.Sc.sgdGENENAME))
 	naVals = which(is.na(nodeLabels))
 	nodeLabels[naVals] = names(nodeLabels)[naVals]
 	nAttrs$label = nodeLabels
