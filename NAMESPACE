@@ -1,0 +1,5 @@
+importMethodsFrom(Rgraphviz,plot)
+importFrom(stats,fisher.test)
+import(org.Sc.sgd.db)
+
+export(bhmaxSubgraph,findComplexes,mergeComplexes,plotComplex,sortComplexes)
