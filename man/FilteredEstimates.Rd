@@ -1,4 +1,4 @@
-\name{TAP complexes}
+\name{AP-MS complexes}
 \alias{gavin06FilteredEstimates}
 \alias{krogan06FilteredEstimates}
 
@@ -25,7 +25,8 @@ parameter of .70, specificity of .999, and commonFrac=1/3.
 
 Both sets of estimates are reported as lists of length three, corresponding to
 MBME, SBMH, and UnRBB complex estimate types (see Scholtens et al., 2005).
-Each of the three elements contains a list of character vectors of estimated complex members.
+Each of the three elements contains a list of character vectors of
+estimated complex members. 
 }
 
 \source{
@@ -44,7 +45,9 @@ Krogan, et al. (2006)
 
 }
 
-\seealso{\code{\link{gavinBP2006}},\code{\link{kroganBPMat2006},\code{findComplexes}}
+\seealso{\code{\link{gavinBP2006}},
+  \code{\link{kroganBPMat2006}},
+  \code{findComplexes}}
 }
 
 \examples{
