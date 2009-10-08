@@ -47,7 +47,7 @@ Krogan, et al. (2006)
 
 \seealso{\code{\link{gavinBP2006}},
   \code{\link{kroganBPMat2006}},
-  \code{findComplexes}}
+  \code{findComplexes}
 }
 
 \examples{

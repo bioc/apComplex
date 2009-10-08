@@ -47,7 +47,7 @@ Saccharomyces cerevisiae by mass spectrometry.  Nature 415, 180-183
 }
 
 \seealso{\code{\link{HMSPCI}},\code{\link{HMSPCIgraph}},\code{findComplexes}}
-}
+
 
 \examples{
 data(MBMEcHMSPCI)

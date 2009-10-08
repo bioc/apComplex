@@ -41,7 +41,7 @@ systematic analysis of protein complexes.  Nature 415, 141-147 (2002).
 
 \seealso{\code{\link{TAP}}, \code{\link{TAPgraph}},
   \code{\link{yTAP}}, \code{findComplexes}}
-}
+
 
 \examples{
 data(yNameTAP)
