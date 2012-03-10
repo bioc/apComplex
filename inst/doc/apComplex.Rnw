@@ -49,9 +49,9 @@ Scholtens and Gentleman (2004) and the biological implications are discussed
 in Scholtens, Vidal, and Gentleman (2005).  
 
 <<setup, echo=FALSE, hide=TRUE>>=
-plotGraph <- function(x, y, ...) {
+plotGraph <- function(x, ...) {
     if (require("Rgraphviz", quietly=TRUE))
-      return(plot(x, y, ...))
+      return(plot(x, ...))
     else {
         msg = "This plot requires Rgraphviz"
         plot(0, 0, type="n")
