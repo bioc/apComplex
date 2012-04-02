@@ -5,8 +5,7 @@ Author: Denise Scholtens <dscholtens@northwestern.edu>
 Description: Functions to estimate a bipartite graph of protein
         complex membership using AP-MS data.
 Depends: R (>= 2.10), graph, RBGL
-Imports: Rgraphviz, stats, org.Sc.sgd.db
-Suggests: 
+Imports: Rgraphviz, stats, org.Sc.sgd.db, stats4
 Maintainer: Denise Scholtens <dscholtens@northwestern.edu>
 License: LGPL
 biocViews: Visualization, MassSpectrometry, GraphsAndNetworks
