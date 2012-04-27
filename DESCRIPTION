@@ -9,5 +9,5 @@ Imports: Rgraphviz, stats, org.Sc.sgd.db
 Suggests: 
 Maintainer: Denise Scholtens <dscholtens@northwestern.edu>
 License: LGPL
-biocViews: Visualization, MassSpectrometry, GraphsAndNetworks
+biocViews: NetworkInference, MassSpectrometry, GraphsAndNetworks
 
